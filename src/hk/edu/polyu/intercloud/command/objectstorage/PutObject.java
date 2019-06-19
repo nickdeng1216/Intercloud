@@ -949,8 +949,10 @@ public class PutObject implements Command {
 		// Download times
 		int i = 10;
 		for (int n = 0; n < path.length; n++) {
-			tmpPath[n] = Common.RETRIEVE_PATH + objectName[n];// nick
-																// dataDigest[n];
+			// nick
+			// getClass()tmpPath[n] = Common.RETRIEVE_PATH + dataDigest[n];
+			tmpPath[n] = Common.RETRIEVE_PATH + objectName[n];
+
 			// Start retrieving
 			File file = new File(tmpPath[n]);
 			if (file.exists() && file.isFile()) {
