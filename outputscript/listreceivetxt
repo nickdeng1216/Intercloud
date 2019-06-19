@@ -1,0 +1,54 @@
+Sun Mar 03 19:39:23 CST 2019 Socket received:
+<Request Version="1.1" ID="1551613162691064723">
+<GeneralInformation From="intracloudnicktest.tk" To="intracloudnicktest.ml" Date="2019-03-03" Time="19:39:22">
+</GeneralInformation>
+<RequestInformation Service="ObjectStorage" Command="ListObject">
+</RequestInformation>
+<AdditionalInformation>
+<Signature>IpK93QAFRAMAlaYYzpM0w8dpV9PWfQrcJavcbyMZ5sMe2IIg7PHMW6BeQo2EIMYcNMwy9nnY/xVh
+rxIP6ezllPPURgcBrEDSa5bn0KUr6VNq+e4wRwpf2ohNrr4iJ81QFkoyhkbeHfW0Ow1TS6jhR6cj
+e7UuXC+5bEajCKH8VWseZcRDCgUXvdofheA7BKX0jb3FLucV/2S2bhZLQEcGCtrEeRfwS+h3hDDM
+RHX/j2YIN6HJxW1+PP2qZ6VutQHKU2GaN49zC7JFGxji17w2EI/3bGTUezF1rIWv4NEKuFZsnNSQ
+apREz+h2Z4v5pCiRKJ/Hpb77D3mh7vZZNyG4BA==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Request>
+
+getObject: 1.txt;b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9;2019-03-03 18:47:01.0
+
+objectList: 
+object: 1.txt;b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9;2019-03-03 18:47:01.0
+1.txt,
+b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9,
+2019-03-03 18:47:01.0,
+nick ListObject.java:1.txt
+nick amazondo:1.txt
+Checking the AWS properties file.
+log4j:WARN No appenders could be found for logger (com.amazonaws.internal.config.InternalConfig).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Getting metadata of 1.txt from S3, START, 1551613163843, 0
+Getting metadata of 1.txt from S3, END, 1551613165311, 1468
+exist: true
+Sun Mar 03 19:39:25 CST 2019 Socket sent:
+<Response Version="1.1" ID="1551613162691064723">
+	<GeneralInformation From="intracloudnicktest.ml" To="intracloudnicktest.tk" Date="2019-03-03" Time="19:39:25">
+	</GeneralInformation>
+	<ResponseInformation Service="ObjectStorage" Command="ObjectList">
+		<DataDigest>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</DataDigest>
+		<UpdateTime>2019-03-03 18:47:01.0</UpdateTime>
+		<ObjectName>1.txt</ObjectName>
+	</ResponseInformation>
+	<AdditionalInformation>
+<Signature>nWn98Q97y3oC565KKiJ3uBuSJEzCfd1RaQf9GZf8z5s4KMXsY0eMSj2BRBaxXPBdXTzXu8Xvy/iz
+QvkvrRqSk0hB0nURFjqkbJu3LyyThnwWq9f5EYG42d8pTVVcPTEpgGI9ubBIEnb8pvfI3AjWFsmE
+p0bdmYc4iMnJobqy16PPRFLz1ZLr5MuRZKFjcq/wqdAsBJGi9YmIzfHBbEyVCwEaQtphDtgYZNHe
+PBJryo27y/ZAlBgQ5/PKfEZCRd64hpF7CUbZ0TPFRLmpTg+wM4tjyW1s/2iHj8YfjWAqU/DFte8p
+LbVVsMQ/cVogOxi9ihhytGYVCLnEUOy30WDAiQ==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Response>
+
+

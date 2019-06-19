@@ -1,0 +1,31 @@
+perflog = 
+errlog = null
+watchdoglog = null
+clientworkload = 1
+workload = 1
+Client workload set to 1
+Gateway workload set to 1
+name = intracloudnicktest.tk
+ip = intracloudnicktest.tk
+role = CLOUD
+You are intracloudnicktest.tk, a CLOUD on intracloudnicktest.tk
+IP address: 59.148.229.206, Location: Central District, 00, Hong Kong, HK
+You do not have any Exchange.
+services = ObjectStorage:minio;
+services = ObjectStorage:minio;
+services = ObjectStorage:minio;
+transfermethods = HTTP,HTTPS
+transfermethods = HTTP,HTTPS
+transfermethods = HTTP,HTTPS
+===============Start intracloudnicktest.tk Server===============
+Starting HTTP server on 80 and HTTPS server on 443
+caddy -host intracloudnicktest.tk -root C:\share\workspace\Intercloud\download\ -agree -email intercloud@comp.polyu.edu.hk
+housekeeper_interval = null
+Housekeeping runs every 3600s.
+You may modify "housekeeper_interval" in the properties file.
+watchdog_interval = null
+WATCHDOG: Watchdog disabled, or either [watchdog_interval] or [watchdoglog] setting is incorrect.
+2019-03-03 13:58:12	Housekeeping...
+>>> HTTP downloading (http://hv2.iccp.cf:12002/iccp.us.cer) starts. [1551592692361]
+aria2c -s4 -x4 -j4 --min-split-size=5M --file-allocation=none --dir="C:\share\workspace\Intercloud\key\CA" --out="iccp.us.cer" "http://hv2.iccp.cf:12002/iccp.us.cer"
+HTTP downloading http://hv2.iccp.cf:12002/iccp.us.cer to C:\share\workspace\Intercloud\key\CA\iccp.us.cer

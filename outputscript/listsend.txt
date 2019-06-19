@@ -1,0 +1,45 @@
+$ RECV from /158.132.13.113:20548 {
+    "Target": "intracloudnicktest.ml",
+    "Parameters": [true],
+    "API": "ObjectStorageAPI",
+    "Method": "list"
+}
+$ SENT to /158.132.13.113:20548 625204402311941
+Sun Mar 03 16:55:58 CST 2019 Socket sent:
+<Request Version="1.1" ID="1551603358219079416">
+<GeneralInformation From="intracloudnicktest.tk" To="intracloudnicktest.ml" Date="2019-03-03" Time="16:55:58">
+</GeneralInformation>
+<RequestInformation Service="ObjectStorage" Command="ListObject">
+</RequestInformation>
+<AdditionalInformation>
+<Signature>IfKx9Gz6zwUjktS0rHkKT2kk291WMtEoU8W59HpBKnNzJmUyuj3y+kKg76sqV5Bw+oaFpPcNsO4X
+TLVRf9TCPu/F6yEI8KijhlBF2EFTkfl9DunUjWiz1EFGEsh53IZ6lFbpHDhe3ZMU+fnNh4zG7WJW
+qNOuOfHtVxEMsDcMCfQLJgnn3c0n4QCtT8yGo+waBA7hgRiRxsjUBI2b3+fmJqWxsHt0Ebbh1MIq
+LFaK6uEghev1SAyxzUTg30EfPSvDTXSemGAdE857k4+MLl4tzw/qFDsUyKvyZLG6TOWZX31ANXJL
+vrh6sdKp6KC4WBW4ExjfwHU3Ji0Q10DebLhPiw==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Request>
+
+Sun Mar 03 16:56:00 CST 2019 Socket received:
+<Response Version="1.1" ID="1551603358219079416">
+	<GeneralInformation From="intracloudnicktest.ml" To="intracloudnicktest.tk" Date="2019-03-03" Time="16:55:59">
+	</GeneralInformation>
+	<ResponseInformation Service="ObjectStorage" Command="ObjectList">
+		<DataDigest></DataDigest>
+		<UpdateTime></UpdateTime>
+		<ObjectName></ObjectName>
+	</ResponseInformation>
+	<AdditionalInformation>
+<Signature>iFC0gOSDki7ahjL97Hu7lDuow9nvb6UtZDE2aXy5PK4i8mLp1gyYvCMxS22obFkGB82feOjVoCL9
+Iib8AMDS9punbj5IQ2vMuQVGVyIB7GJj/NYWvNYC68TSN7psQgPPt704SY7G0Twzm+HYal1a0wee
+9+lr2Iw55tZHYsQKg2EnXJVVvYjMaOZvhgh8mJoECUKkA+PYbt71KLwaXYtUnY1uVRLb2KEyxPKk
+Nm/28TtuuUfCfHT0qxRb3IaeyK5bT2Bzc9SGf95Z9ryPG6ovghLNfJKcPc+5+rIiu6cQHKCGXloc
+lo5k4X/DjTQnhOL0Ogs70DsoLBCThj6c1LYEaA==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Response>
+
+

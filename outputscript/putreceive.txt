@@ -1,0 +1,62 @@
+Sun Mar 03 14:05:50 CST 2019 Socket received:
+<Request Version="1.1" ID="1551593150600717642">
+<GeneralInformation From="intracloudnicktest.tk" To="intracloudnicktest.ml" Date="2019-03-03" Time="14:05:50">
+</GeneralInformation>
+<RequestInformation Service="ObjectStorage" Command="PutObject">
+<TransferMethod>HTTP</TransferMethod>
+<ObjectName>1.txt</ObjectName>
+</RequestInformation>
+<AdditionalInformation>
+<Path>http://intracloudnicktest.tk:80/1.txt</Path>
+<Overwrite>True</Overwrite>
+<DataSecurity>Public</DataSecurity>
+<IP>intracloudnicktest.tk</IP>
+<Port>80</Port>
+<DataDigest>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</DataDigest>
+<Encoding>Base64</Encoding>
+<DataDigestAlgorithm>SHA256</DataDigestAlgorithm>
+<Signature>ex4OvHMugZz2G47A1k03YRPDpccTpGZv8BnhArx63ji+uTtzno9JpdwTluOqIEgSPE4QnTzFKMKm
+egDUwwc8u713dINJeEFFAZVJ5vLfkhtM0dQIzGP95IT1mU+f5/LmfF2AAnAX5bTqx54okbU5rMt3
+Zw2/OHby+YmvT3WJVsotuLPdoJwZN0axw1ScafRiC/nnqj/2s8camzxe9QgIcndgpP+g7NPttnVu
+welm+VekA64AWTWXRV38legrk8O3dd3rgCq7UyL7ltuv4NoRKxyxyEoHd7QGjCpvDP7OlPKQ2CFD
+eQDS20eoWhM3JLISDTfpaDkdd4EQUXo6/3S6tw==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Request>
+
+>>> HTTP downloading (http://intracloudnicktest.tk:80/1.txt) starts. [1551593151529]
+aria2c -s4 -x4 -j4 --min-split-size=5M --file-allocation=none --dir="C:\share\workspace\Intercloud\retrieve" --out="1.txt" "http://intracloudnicktest.tk:80/1.txt"
+HTTP downloading http://intracloudnicktest.tk:80/1.txt to C:\share\workspace\Intercloud\retrieve\1.txt
+>>> HTTP downloading (http://intracloudnicktest.tk:80/1.txt) ends in 453ms, at ?KB/s. [1551593151982]
+SSS Digest calculation START [1551593151998]
+SSS Digest calculation END [1551593151998]
+SSS Uploading to storage START [1551593151998]
+Checking the AWS properties file.
+log4j:WARN No appenders could be found for logger (com.amazonaws.internal.config.InternalConfig).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Uploading 1.txt to S3, START, 1551593152420, 0
+: Uploading 1.txt to S3, END, 1551593154076, 1656
+SSS Uploading to storage END [1551593154076]
+Sun Mar 03 14:05:54 CST 2019 Socket sent:
+<Response Version="1.1" ID="1551593150600717642">
+	<GeneralInformation From="intracloudnicktest.ml" To="intracloudnicktest.tk" Date="2019-03-03" Time="14:05:54">
+	</GeneralInformation>
+	<ResponseInformation Service="ObjectStorage" Command="ConfirmationForPut">
+		<ObjectName>1.txt</ObjectName>
+	</ResponseInformation>
+	<AdditionalInformation>
+		<Overwrite>True</Overwrite>
+		<DataDigest>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</DataDigest>
+		<DataDigestAlgorithm>SHA256</DataDigestAlgorithm>
+<Signature>RzeXB1zmcHOZbtP3RDu+g3RGdgiYlvE+64zAuF5rkdioxfkdg0SP3sMz90KbbfIQPmsNEmPbRcmE
+xOOd6orvdYStmeaVAxatHJtxEzCIAhabyW+Ko2pOnl2TlZHBUyi5EA2gjF/NlRVen7fxdQNGS4Fb
+YLVHYkpTI5Dt6YuzaK3WDa/76PAYqaNuAW33ujMlR610r+krupJK0w+9Eh2J7ocpDqd+C5KzDN7E
+FlzYpNy9+KZPtq67KtG8gfr8tp82i/ZGyn8pWqan6mfXylmwiBwpPpdKA+XBMZYE9ASlHW57SQbT
+mbH5vNcMVPfuh6iqI6wh4YerbtpEa8cALBtfHg==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Response>
+

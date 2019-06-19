@@ -1,0 +1,69 @@
+$ [-> 127.0.0.1:2001] {"Target":"intracloudnicktest.ml","Parameters":["1.txt","HTTP",true,"Public",true],"API":"ObjectStorageAPI","Method":"put"}
+$ RECV from /127.0.0.1:60889 {
+    "Target": "intracloudnicktest.ml",
+    "Parameters": [
+        "1.txt",
+        "HTTP",
+        true,
+        "Public",
+        true
+    ],
+    "API": "ObjectStorageAPI",
+    "Method": "put"
+}
+$ [<- 127.0.0.1:2001] 614659931203646
+$ SENT to /127.0.0.1:60889 614659931203646
+RESPONSE: 614659931203646
+=======================
+=  Already get 1.txt  =
+=======================
+
+SSS Downloading from storage END [1551592814353]
+Sun Mar 03 14:00:14 CST 2019 Socket sent:
+<Request Version="1.1" ID="1551592813930009630">
+<GeneralInformation From="intracloudnicktest.tk" To="intracloudnicktest.ml" Date="2019-03-03" Time="14:00:13">
+</GeneralInformation>
+<RequestInformation Service="ObjectStorage" Command="PutObject">
+<TransferMethod>HTTP</TransferMethod>
+<ObjectName>1.txt</ObjectName>
+</RequestInformation>
+<AdditionalInformation>
+<Path>http://intracloudnicktest.tk:80/1.txt</Path>
+<Overwrite>True</Overwrite>
+<DataSecurity>Public</DataSecurity>
+<IP>intracloudnicktest.tk</IP>
+<Port>80</Port>
+<DataDigest>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</DataDigest>
+<Encoding>Base64</Encoding>
+<DataDigestAlgorithm>SHA256</DataDigestAlgorithm>
+<Signature>May4AMrZwtC973I6jVU0Pk4eesSFb5iV+LM2uTuBwY0v569fzuAvXpj0aO8/HLyn9f7w11WdSZPm
+sdzaUFkCn8brEQlFFynqJ6AJmWNtiD9UPtAYCG1uLjRtM3lWNX1kMRksl8urDucFICOD0GVeKoSU
+HvQXDe8g76l9AVC4Q8HjCssk6ONhMQSa3CWqsxTeBfP1+NcFyEgfl4GRqyR9I60/ONySzC8sMs2j
+IQ1D3CFpFZpWM+HqS2/FTqnETYjkS9gsQ6abNQ9fWvaMVaglg30u68raJhO/UyQinA17wVF0mi2w
+S7bs+oXqUW9Peu7tC8yBDUmABAKaLOGC4Kk/Gg==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Request>
+
+Sun Mar 03 14:00:16 CST 2019 Socket received:
+<Response Version="1.1" ID="1551592813930009630">
+	<GeneralInformation From="intracloudnicktest.ml" To="intracloudnicktest.tk" Date="2019-03-03" Time="14:00:15">
+	</GeneralInformation>
+	<ResponseInformation Service="ObjectStorage" Command="ConfirmationForPut">
+		<ObjectName>1.txt</ObjectName>
+	</ResponseInformation>
+	<AdditionalInformation>
+		<Overwrite>True</Overwrite>
+		<DataDigest>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</DataDigest>
+		<DataDigestAlgorithm>SHA256</DataDigestAlgorithm>
+<Signature>Gk3RYExfS5h44gPlvNOyp5uFxlxJHNf3EO+UCuQrTWfGDIgg2kF8eUICNu1wB8gZIkyDyTWI3MI5
+IhTi6uIxDlZoUi/nKbJG6RXgiMMOR0mdqAM1auGta/Wgbfal/Ik0ZiD4k8ZbzrcFAHnDTNnlV2kq
+2S5LjidB7iC0ao1CSfypu9Ft35JaPNgcO4Ja6pf5SHnX3pPP2a4fwhBoDWZQ7OORMKkgboU4Mn/E
+vilY1CIWLDmewfTW/gsoPiBQpG2znpl3JkhwwYiSzQ9KPsbHkinlg9bNTtkNE+nYPulwM5PhPJU0
+3yXcAESSfqUTSsLNUHic1q0TxkzHLPvdQbvLew==
+</Signature>
+<SignatureAlgorithm>SHA1/RSA</SignatureAlgorithm>
+</AdditionalInformation>
+</Response>
+
