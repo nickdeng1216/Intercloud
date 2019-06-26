@@ -9,31 +9,30 @@ import javax.swing.JOptionPane;
 
 /**
  * Configuration class
- * 
- * @author Priere
  *
+ * @author Priere
  */
 public class Configuration {
 
-	public static void main(String[] args) {
-		try {
-			String[] methods = new String[] { "Database", "Key Cert",
-					"Add Friends", "Config Files" };
-			int m = JOptionPane.showOptionDialog(null, "Select an option.",
-					"Options", JOptionPane.DEFAULT_OPTION,
-					JOptionPane.PLAIN_MESSAGE, null, methods, methods[0]);
-			if (m == 0) {
-				InitDB.main(args);
-			} else if (m == 1) {
-				KeyCert.main(args);
-			} else if (m == 2) {
-				AddFriends.main(args);
-			} else if (m == 3) {
-				ConfigFiles.main(args);
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			e.printStackTrace();
-		}
-	}
+    public static void main(String[] args) {
+        try {
+            String[] methods = new String[]{"Database", "Config Files", "Key Cert",
+                    "Add Friends"};
+            int m = JOptionPane.showOptionDialog(null, "Select an option.",
+                    "Options", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null, methods, methods[0]);
+            if (m == 0) {
+                InitDB.main(args);
+            } else if (m == 1) {
+                ConfigFiles.main(args);
+            }else if (m == 2) {
+                KeyCert.main(args);
+            } else if (m == 3) {
+                AddFriends.main(args);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

@@ -85,6 +85,7 @@ public class Common {
 	// CA info
 	public static final String ca_ip = "hv2.iccp.cf";
 	public static final String ca_name = "iccp.us";
+	public static final String ca_domain = "http://10.16.18.21:6000";
 	public static Connection con = null;
 	// Housekeeper
 	public static int housekeeperInterval = 3600;

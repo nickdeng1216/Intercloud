@@ -46,6 +46,7 @@ public class ConfigFiles {
 						title, JOptionPane.INFORMATION_MESSAGE);
 		StringBuilder sb = new StringBuilder();
 		String name = getInput("Domain name of this Gateway (e.g. iccp3.iccp.cf):");
+		String email = getInput("Email for authentication (Cannot receive the certificate if you provide the incorrect email.");
 		String[] roles = new String[] { "Root", "Exchange", "Cloud" };
 		int r = JOptionPane.showOptionDialog(null,
 				"Select the role of this Gateway.", title,
@@ -59,6 +60,7 @@ public class ConfigFiles {
 		String perflog = ""; // Basic
 		String errlog = getInput("Error log file (e.g. log/error.log):");
 		sb.append("name=").append(name).append(LINE).append("ip=").append(name)
+				.append(LINE).append("email=").append(email)
 				.append(LINE).append("role=").append(role).append(LINE)
 				.append("transfermethods=").append(transfermethods)
 				.append(LINE).append("vendor=").append(vendor).append(LINE)

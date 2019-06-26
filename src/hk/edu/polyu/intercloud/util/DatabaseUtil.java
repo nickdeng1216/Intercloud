@@ -679,7 +679,7 @@ public class DatabaseUtil {
 			}
 		}
 		if (!flag) {
-			String sql_insert = "insert into CONNECTED_CLOUDS(IP,CLOUD_NAME,AUTHENTICATED,ROLE) values(?,?,1,?)";
+			String sql_insert = "insert into CONNECTED_CLOUDS(IP,CLOUD_NAME,AUTHENTICATED,ROLE) values(?,?,0,?)";
 			PreparedStatement pst = Common.con.prepareStatement(sql_insert);
 			int idx = 1;
 			pst.setString(idx++, cloud.getIp());
