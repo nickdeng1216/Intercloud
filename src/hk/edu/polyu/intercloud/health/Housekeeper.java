@@ -2,6 +2,7 @@ package hk.edu.polyu.intercloud.health;
 
 import hk.edu.polyu.intercloud.common.Common;
 import hk.edu.polyu.intercloud.fileserver.client.PostJSON;
+import hk.edu.polyu.intercloud.model.cloud.Cloud;
 import hk.edu.polyu.intercloud.security.CER;
 import hk.edu.polyu.intercloud.security.CRL;
 import hk.edu.polyu.intercloud.util.CertificateUtil;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -69,28 +71,28 @@ public class Housekeeper implements Callable<String> {
     }
 
     public void GetCert() throws Exception {
-        String domain = "intercloud.ml";
-        String email = "nick.deng@gmail.com";
-        String cert = "";
-        String url = "http://10.16.18.21:6000/cert";
+        String domain = getProp("name");
+        String email = getProp("email");
+        String url = Common.ca_domain + "/cert";
         String params = "{\"domain\":\"" + domain + "\"," + "\"email\":\""
                 + email + "\"" + "}";
-        cert = PostJSON.Post(url, params);
+        String cert = PostJSON.Post(url, params);
         KeyUtil.writefile(Common.KEY_PATH + domain + ".cer", cert);
     }
 
     public void GetPublicKeys() throws Exception {
-        String requestfor = "";
-        String requestfrom = "";
-        String email = "";
-        String pem = "";
-        String url = "http://10.16.18.21:6000/friend";
-        String params = "{\"requestfor\":\"" + requestfor + "\","
-                + "\"requestfrom\":\"" + requestfrom + "\"," + "\"email\":\""
-                + email + "\"" + "}";
-        pem = PostJSON.Post(url, params);
-        KeyUtil.writefile(Common.KEY_PATH + requestfor + ".pem", pem);
+        String requestfrom = getProp("name");
+        String email = getProp("email");
+        String url = Common.ca_domain + "/friend";
+        for (Map.Entry<String, Cloud> entry: Common.my_friends.entrySet()){
 
+            String requestfor =  entry.getKey();
+            String params = "{\"requestfor\":\"" + requestfor + "\","
+                    + "\"requestfrom\":\"" + requestfrom + "\"," + "\"email\":\""
+                    + email + "\"" + "}";
+            String pem = PostJSON.Post(url, params);
+            KeyUtil.writefile(Common.KEY_PATH + requestfor + ".pem", pem);
+        }
     }
 
     // @Override

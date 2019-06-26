@@ -23,15 +23,15 @@ public class InnerObjectStorageAPI {
      * @return The protocol ID, used for status checking.
      * @throws ObjectStorageAPIException
      */
-    public String delete(String objName, boolean protocolSecurity)
-            throws ObjectStorageAPIException {
-
-    }
-
-    @Override
-    public void initialization() {
-        this.generalInformation = protocol.getGeneralInformation();
-        this.requestInformation = protocol.getRequestInformation();
-        this.additionalInformation = protocol.getAdditionalInformation();
-    }
+//    public String delete(String objName, boolean protocolSecurity)
+//            throws ObjectStorageAPIException {
+//
+//    }
+//
+//    @Override
+//    public void initialization() {
+//        this.generalInformation = protocol.getGeneralInformation();
+//        this.requestInformation = protocol.getRequestInformation();
+//        this.additionalInformation = protocol.getAdditionalInformation();
+//    }
 }
