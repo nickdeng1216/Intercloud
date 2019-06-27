@@ -8,11 +8,15 @@ import hk.edu.polyu.intercloud.security.CRL;
 import hk.edu.polyu.intercloud.util.CertificateUtil;
 import hk.edu.polyu.intercloud.util.KeyUtil;
 import hk.edu.polyu.intercloud.util.LogUtil;
+import hk.edu.polyu.intercloud.util.StringUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -72,29 +76,79 @@ public class Housekeeper implements Callable<String> {
 
     public void GetCert() throws Exception {
         String domain = getProp("name");
-        String email = getProp("email");
-        String url = Common.ca_domain + "/cert";
-        String params = "{\"domain\":\"" + domain + "\"," + "\"email\":\""
-                + email + "\"" + "}";
-        String cert = PostJSON.Post(url, params);
-        KeyUtil.writefile(Common.KEY_PATH + domain + ".cer", cert);
+        String certFileName = Common.KEY_PATH + domain + ".cer";
+        Path certFile = Paths.get(certFileName);
+        if (!Files.exists(certFile)) {
+            String email = getProp("email");
+            String url = Common.ca_domain + "/cert";
+            String params = "{\"domain\":\"" + domain + "\"," + "\"email\":\""
+                    + email + "\"" + "}";
+            String cert = PostJSON.Post(url, params);
+            KeyUtil.writefile(certFileName, cert);
+        }
     }
 
     public void GetPublicKeys() throws Exception {
         String requestfrom = getProp("name");
         String email = getProp("email");
         String url = Common.ca_domain + "/friend";
-        for (Map.Entry<String, Cloud> entry: Common.my_friends.entrySet()){
+        for (Map.Entry<String, Cloud> entry : Common.my_friends.entrySet()) {
+            String requestfor = entry.getKey();
+            String fdFileName = Common.KEY_PATH + "Others" + File.separator + requestfor + ".pem";
+            Path fdFile = Paths.get(fdFileName);
+            if (!Files.exists(fdFile)) {
 
-            String requestfor =  entry.getKey();
-            String params = "{\"requestfor\":\"" + requestfor + "\","
-                    + "\"requestfrom\":\"" + requestfrom + "\"," + "\"email\":\""
-                    + email + "\"" + "}";
-            String pem = PostJSON.Post(url, params);
-            KeyUtil.writefile(Common.KEY_PATH + requestfor + ".pem", pem);
+                String params = "{\"requestfor\":\"" + requestfor + "\","
+                        + "\"requestfrom\":\"" + requestfrom + "\"," + "\"email\":\""
+                        + email + "\"" + "}";
+                String pem = PostJSON.Post(url, params);
+                pem = String_Process(pem);
+                KeyUtil.writefile(Common.KEY_PATH + "Others" + File.separator + requestfor + ".pem", pem);
+            }
         }
     }
 
+    public String String_Process(String content) throws Exception {
+        StringUtil inserted1 = new StringUtil("-----BEGIN PUBLIC KEY-----", 26, "\r\n");
+        StringUtil inserted2 = new StringUtil("-----END PUBLIC KEY-----", 0, "\r\n");
+        String result = "";
+        String insert = inserted1.getStringToBeInserted();
+        Integer pos = inserted1.getPosition();
+        String token = inserted1.getToken();
+        result = insertString(content, insert, pos - 1);
+        insert = inserted2.getStringToBeInserted();
+        pos = inserted2.getPosition();
+        token = inserted2.getToken();
+        Integer pos1 = result.indexOf(token);
+        result = insertString(result, insert, pos1 + pos - 1);
+        return result;
+    }
+
+    public static String insertString(
+            String originalString,
+            String stringToBeInserted,
+            Integer index) {
+
+        // Create a new string
+        String newString = new String();
+
+        for (int i = 0; i < originalString.length(); i++) {
+
+            // Insert the original string character
+            // into the new string
+            newString += originalString.charAt(i);
+
+            if (i == index) {
+
+                // Insert the string to be inserted
+                // into the new string
+                newString += stringToBeInserted;
+            }
+        }
+
+        // return the modified String
+        return newString;
+    }
     // @Override
     // public String call() throws Exception {
     // // Retrieve
@@ -188,3 +242,4 @@ public class Housekeeper implements Callable<String> {
         return prop;
     }
 }
+
