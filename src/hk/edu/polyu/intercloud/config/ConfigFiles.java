@@ -1,13 +1,26 @@
 package hk.edu.polyu.intercloud.config;
 
+import hk.edu.polyu.intercloud.common.Common;
+import hk.edu.polyu.intercloud.exceptions.SecurityException;
+import hk.edu.polyu.intercloud.fileserver.client.PostJSON;
+import hk.edu.polyu.intercloud.security.CSR;
 import hk.edu.polyu.intercloud.util.CmdExecutor;
+import hk.edu.polyu.intercloud.util.KeyUtil;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 
 import javax.swing.JOptionPane;
+
+import net.lingala.zip4j.exception.ZipException;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -32,8 +45,10 @@ public class ConfigFiles {
 	private static EmailValidator emailValidator = EmailValidator.getInstance();
 	private static String title = "Properties";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws SecurityException,
+			IOException, ZipException {
 		propForGW();
+		keycert();
 	}
 
 	private static void propForGW() throws IOException {
@@ -425,5 +440,85 @@ public class ConfigFiles {
 		}
 		Files.write(Paths.get(file), text.getBytes());
 		return true;
+	}
+	private static void keycert() throws IOException, SecurityException,
+			ZipException {
+		String cloudName = getProp("name");
+		if (cloudName == null || cloudName.isEmpty()) {
+			JOptionPane.showMessageDialog(null,
+					"Please complete configuration first.");
+			return;
+		}
+		genKeyPair();
+		csr();
+	}
+
+	static void genKeyPair() throws IOException, SecurityException {
+		Path privatePem = Paths.get(Common.KEY_PATH + "private.pem");
+		Path publicPem = Paths.get(Common.KEY_PATH + "public.pem");
+		if ((Files.exists(privatePem) && Files.isRegularFile(privatePem))
+				|| (Files.exists(publicPem) && Files.isRegularFile(publicPem))) {
+			int i = JOptionPane.showConfirmDialog(null,
+					"Pem files already exist. Overwrite?");
+			if (i != JOptionPane.YES_OPTION) {
+				return;
+			}
+		}
+		KeyUtil.generateKeyPair();
+	}
+
+	static void csr() throws SecurityException, IOException, ZipException {
+		String cloudName = getProp("name");
+		String email = getProp("email");
+
+		String cerName = Common.KEY_PATH + cloudName + ".csr";
+		String csr = CSR.generatePKCS10("CN=" + cloudName
+						+ ", L=PolyU, C=HKSAR", Common.KEY_PATH + "private.pem",
+				Common.KEY_PATH + "public.pem");
+		KeyUtil.writefile(cerName, csr);
+		String url = Common.ca_domain + "/upload";
+		String pk = readToString(Common.KEY_PATH + "public.pem").replaceAll(
+				"\r\n", "");
+		String csrZip = csr.replaceAll("\r\n", "");
+		String params = "{\"domain\":\"" + cloudName + "\"," + "\"csr\":\""
+				+ csrZip + "\"," + "\"email\":\"" + email + "\","
+				+ "\"publickey\":\"" + pk + "\"" + "}";
+		PostJSON.Post(url, params);
+		JOptionPane.showMessageDialog(null,
+				"CSR generated. Please wait 10 minutes.");
+	}
+
+	static public String readToString(String fileName) {
+		String encoding = "ISO-8859-1";
+		File file = new File(fileName);
+		Long filelength = file.length();
+		byte[] filecontent = new byte[filelength.intValue()];
+		try {
+			FileInputStream in = new FileInputStream(file);
+			in.read(filecontent);
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			return new String(filecontent, encoding);
+		} catch (UnsupportedEncodingException e) {
+			System.err.println("The OS does not support " + encoding);
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private static String getProp(String item) throws IOException {
+		Properties properties = new Properties();
+		InputStream inputStream;
+		String prop = "";
+		inputStream = new FileInputStream(Common.GW_PROP_FILE);
+		properties.load(inputStream);
+		prop = properties.getProperty(item);
+		System.out.println(item + " = " + prop);
+		return prop;
 	}
 }

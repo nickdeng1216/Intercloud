@@ -25,9 +25,9 @@ public class Configuration {
                 InitDB.main(args);
             } else if (m == 1) {
                 ConfigFiles.main(args);
-            }else if (m == 2) {
-                KeyCert.main(args);
-            } else if (m == 3) {
+//            }else if (m == 2) {
+//                KeyCert.main(args);
+            } else if (m == 2) {
                 AddFriends.main(args);
             }
         } catch (Exception e) {
