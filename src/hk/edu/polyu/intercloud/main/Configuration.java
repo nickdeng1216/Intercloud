@@ -16,7 +16,7 @@ public class Configuration {
 
     public static void main(String[] args) {
         try {
-            String[] methods = new String[]{"Database", "Config Files", "Key Cert",
+            String[] methods = new String[]{"Database", "Config Files", //"Key Cert",
                     "Add Friends"};
             int m = JOptionPane.showOptionDialog(null, "Select an option.",
                     "Options", JOptionPane.DEFAULT_OPTION,
